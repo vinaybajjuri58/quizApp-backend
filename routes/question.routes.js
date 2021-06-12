@@ -1,7 +1,7 @@
 const express = require("express");
 const questionRouter = express.Router();
-
-questionRouter.route("/").post(addQuestion);
+const { addOption } = require("../controllers/option.controllers");
+questionRouter.route("/:questionId/options").post(addOption);
 module.exports = {
   questionRouter,
 };
