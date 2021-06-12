@@ -32,4 +32,5 @@ const addQuiz = async (req, res) => {
 
 module.exports = {
   getQuizData,
+  addQuiz,
 };
