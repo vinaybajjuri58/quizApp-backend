@@ -10,6 +10,12 @@ const { quizRouter } = require("./routes/quiz.routes");
 const { questionRouter } = require("./routes/question.routes");
 
 initialiseDbConnection();
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Welcome to the backend of Fin-Quiz",
+  });
+});
 app.use("/quiz", quizRouter);
 app.use("/question", questionRouter);
 
