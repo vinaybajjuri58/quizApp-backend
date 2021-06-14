@@ -1,12 +1,18 @@
 const Quiz = require("../models/Quiz.model");
 const getQuizData = async (req, res) => {
   try {
-    const Quiz = await Quiz.find({});
-    res.status({
+    const Quizdata = await Quiz.find({}).populate({
+      path: "questions",
+      populate: {
+        path: "options",
+      },
+    });
+    res.status(200).json({
       success: true,
-      Quiz,
+      Quizdata,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json({
       success: false,
       message: "Error in getting quiz data",

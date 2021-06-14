@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   });
 });
 app.use("/quiz", quizRouter);
-app.use("/question", questionRouter);
+app.use("/questions", questionRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started on port: ${PORT}`);

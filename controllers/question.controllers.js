@@ -5,11 +5,12 @@ const addQuestion = async (req, res) => {
   const { quizId } = req.params;
   try {
     const quizData = await Quiz.findById(quizId);
-    const newQuestion = new Question(req.body);
+    const newQuestion = new Question({ ...req.body, options: [] });
     const session = await mongoose.startSession();
     session.startTransaction();
     const savedQuestion = await newQuestion.save({ session: session });
     quizData.questions.push(savedQuestion.id);
+    quizData.totalQuestions += 1;
     await quizData.save({ session: session });
     await session.commitTransaction();
     res.status(201).json({
